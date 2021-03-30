@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+}
+</style>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<script>
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var hour = new Date().getHours();
+  var minutes = new Date().getMinutes();
+  var seconds = new Date().getSeconds();
+
+  var sleepHours = [23, 0, 1, 2, 3, 4, 5, 6, 7]
+  var pauzeHours = [8, 13, 11]
+  var pauzeMinutes = {
+      13: [0, 60],
+      11: [0, 20],
+      8: [0, 30]
+  }
+
+  if (sleepHours.includes(hour)) {
+      document.getElementById("demo").innerHTML = "sleeping";
+  } else if (pauzeHours.includes(hour)) {
+      if (minutes >= pauzeMinutes[hour][0] && minutes <= pauzeMinutes[hour][1]) {
+          document.getElementById("demo").innerHTML = "intermission: time left: " + (pauzeMinutes[hour][1] - minutes);
+      } else {
+          document.getElementById("demo").innerHTML = "studying: time left: " + (60 - minutes);
+      }
+  } else {
+      timeLeft = 60 - minutes;
+      if (timeLeft > 10) {
+          document.getElementById("demo").innerHTML = "studying: time left: " + (timeLeft - 10); //+ seconds;
+      } else {
+          document.getElementById("demo").innerHTML = "intermission: (or you can keep studying): " + (timeLeft); //+ seconds;
+      }
+  }
+
+}, 1000);
+</script>
+
+</body>
+</html>
