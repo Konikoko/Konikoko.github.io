@@ -29,6 +29,7 @@
 	<p>Click the start button to time your study seconds. Click the stop button to stop.</p>
     <button onClick="start()">Start</button> 
 	<button onClick="stop()">Stop</button> 
+    <p id="timer"></p>
     <p id="result"></p>
     <button class="clearButton" onClick="clearTime()">Clear</button> 
 </div>
@@ -48,6 +49,7 @@ function start() {
     console.log("start");
     	timerInterval = setInterval(function() {
 			startTime = startTime + 1;
+            document.getElementById("timer").innerHTML = "Timer (in seconds): " + (startTime);
 			console.log(startTime);
 			}, 1000);
     }
@@ -63,6 +65,7 @@ function stop() {
 	if (startTime > 0) { 
     console.log("stop");
       clearInterval(timerInterval);
+      document.getElementById("timer").innerHTML = "";
       localStorage.studyCount = Number(localStorage.studyCount) + startTime;
       startTime = 0;
     }
