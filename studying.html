@@ -3,18 +3,70 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-p {
-  text-align: center;
-  font-size: 60px;
-  margin-top: 0px;
+
+.title {
+	text-align: center;
+	font-size: 60px;
 }
+
+.wrapper {
+    text-align: center;
+    border:1px solid black;
+    border-radius: 5px;
+}
+
+.clearButton {
+    margin-bottom: 15px;
+}
+
 </style>
 </head>
 <body>
 
-<p id="demo"></p>
+<p class="title" id="demo"></p>
+
+<div class="wrapper">
+	<p>Click the start button to time your study seconds. Click the stop button to stop.</p>
+    <button onClick="start()">Start</button> 
+	<button onClick="stop()">Stop</button> 
+    <p id="result"></p>
+    <button class="clearButton" onClick="clearTime()">Clear</button> 
+</div>
+
+
 
 <script>
+
+if (!localStorage.studyCount) {
+  	localStorage.studyCount = 0;
+}
+
+let startTime = 0;
+
+function start() {
+	if (startTime == 0) {
+    console.log("start");
+    	timerInterval = setInterval(function() {
+			startTime = startTime + 1;
+			console.log(startTime);
+			}, 1000);
+    }
+}
+
+function clearTime() {
+	if (startTime == 0) {
+    	localStorage.studyCount = 0;
+    }
+}
+
+function stop() {
+	if (startTime > 0) { 
+    console.log("stop");
+      clearInterval(timerInterval);
+      localStorage.studyCount = Number(localStorage.studyCount) + startTime;
+      startTime = 0;
+    }
+}
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -46,7 +98,9 @@ var x = setInterval(function() {
           document.getElementById("demo").innerHTML = "studying: time left: " + (timeLeft - 10); //+ seconds;
       } else {
           document.getElementById("demo").innerHTML = "intermission: (or you can keep studying): " + (timeLeft); //+ seconds;
+          
       }
+      document.getElementById("result").innerHTML = "You have studied " + localStorage.studyCount + " second(s) or " + (localStorage.studyCount/60).toFixed(2) + " minute(s) or " + (localStorage.studyCount/3600).toFixed(2) + " hour(s)."  ; 
   }
 
 }, 1000);
