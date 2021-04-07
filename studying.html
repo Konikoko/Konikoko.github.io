@@ -103,8 +103,9 @@ var x = setInterval(function() {
           document.getElementById("demo").innerHTML = "intermission: (or you can keep studying): " + (timeLeft); //+ seconds;
           
       }
-      document.getElementById("result").innerHTML = "You have studied " + localStorage.studyCount + " second(s) or " + (localStorage.studyCount/60).toFixed(2) + " minute(s) or " + (localStorage.studyCount/3600).toFixed(2) + " hour(s)."  ; 
+      
   }
+  document.getElementById("result").innerHTML = "You have studied " + localStorage.studyCount + " second(s) or " + (localStorage.studyCount/60).toFixed(2) + " minute(s) or " + (localStorage.studyCount/3600).toFixed(2) + " hour(s)."  ; 
 
 }, 1000);
 </script>
