@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+     <title>Snake eyes</title>
+</head>
+<body>
+	 <center>
+	<h1>Snake eyes by konikoko</h1>
+     <ul id="List"></ul>
+     <button onclick="getNumber()">Roll!</button>
+     <h3 id="Lives">5</h3>
+     <button onclick="addLive()">Add lives</button>
+     <button onclick="removeLive()">Remove lives</button>
+     </center>
+     <script>
+		var lives = 5
+		function removeLive() {
+			if (lives > 0) {
+					document.getElementById("Lives").innerHTML = --lives;
+				}
+			
+				
+			}
+		 
+		function addLive() {
+				document.getElementById("Lives").innerHTML = ++lives;
+			}
+
+		function getNumber() {
+            var minNumber = 1;
+			var maxNumber = 6;
+			let list = document.getElementById("List");
+			list.innerHTML = '';
+			
+			for (let i = 0; i < lives; i++) {
+				var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);
+				text = randomnumber.toString();
+				let li = document.createElement("li");
+				li.innerText = text;
+				list.appendChild(li);
+			}
+			
+		}
+     </script>
+</body>
+</html>
