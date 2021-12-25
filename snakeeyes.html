@@ -2,40 +2,59 @@
 <html>
 <head>
 	<meta charset="utf-8">
-     <title>Snake eyes</title>
+	<title>Snake Eyes</title>
 </head>
 <body>
-	 <center>
-	<h1>Snake eyes by konikoko</h1>
-     <ul id="List"></ul>
-     <button onclick="getNumber()">Roll!</button>
-     <h3 id="Lives">5</h3>
-     <button onclick="addLive()">Add lives</button>
-     <button onclick="removeLive()">Remove lives</button>
-     </center>
-     <script>
+	<center>
+	<h1>Snake Eyes by Konikoko</h1>
+	<h2>Dieces</h2>
+	<ul id="List" style="list-style: none; padding: 0;"></ul>
+    <button onclick="getNumber()">Roll!</button>
+    <h2>Lives</h2>
+    <h2 id="Lives">5</h2>
+    <button onclick="addLive()">Add lives</button>
+    <button onclick="removeLive()">Remove lives</button>
+    <h2>Times you clicked roll</h2>
+    <h2 id="Rolled">0</h2>
+	<button onclick="resetRoll()">Reset Counter</button>
+    </center>
+    <script>
 		var lives = 5
+		var rolled = 0
 		function removeLive() {
 			if (lives > 0) {
 					document.getElementById("Lives").innerHTML = --lives;
-				}
-			
-				
 			}
+		}
 		 
 		function addLive() {
 				document.getElementById("Lives").innerHTML = ++lives;
-			}
+		}
+		
+		function addRoll() {
+				document.getElementById("Rolled").innerHTML = ++rolled;
+		}
+		
+		function resetRoll() {
+				rolled = 0
+				document.getElementById("Rolled").innerHTML = rolled;
+				
+		}
 
 		function getNumber() {
             var minNumber = 1;
-			var maxNumber = 6;
+			var maxNumber = 5;
 			let list = document.getElementById("List");
 			list.innerHTML = '';
+			addRoll();
 			
 			for (let i = 0; i < lives; i++) {
 				var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);
-				text = randomnumber.toString();
+				if (randomnumber != 1) {
+					text = randomnumber.toString();
+				} else {
+					text = "Joker 🃏";
+				}
 				let li = document.createElement("li");
 				li.innerText = text;
 				list.appendChild(li);
